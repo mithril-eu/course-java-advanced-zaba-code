@@ -6,14 +6,12 @@ import java.util.function.Predicate;
 
 public class NumberPredicates {
 
-    // TODO: Implement these predicates correctly to make tests pass
-    public static final Predicate<Integer> IS_EVEN = num -> false;        // Replace with correct implementation
-    public static final Predicate<Integer> IS_POSITIVE = num -> false;    // Replace with correct implementation
-    public static final Predicate<Integer> IS_SINGLE_DIGIT = num -> false; // Replace with correct implementation
+    public static final Predicate<Integer> IS_POSITIVE = num -> num > 0;
+    public static final Predicate<Integer> IS_EVEN = num -> num % 2 == 0;
+    public static final Predicate<Integer> IS_SINGLE_DIGIT = num -> num >= 0 && num < 10;
 
-    // TODO: Implement this method to make tests pass
     public static Predicate<Integer> createRangePredicate(int min, int max) {
-        return num -> false; // Replace with correct implementation
+        return num -> num >= min && num <= max;
     }
 
     public static List<Integer> filterNumbers(List<Integer> numbers, Predicate<Integer> predicate) {

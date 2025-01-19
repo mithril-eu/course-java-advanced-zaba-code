@@ -98,7 +98,9 @@ class NumberPredicatesTest {
         @Test
         @DisplayName("Should filter even positive numbers less than 20")
         void shouldFilterEvenPositiveNumbersLessThan20() {
-            Predicate<Integer> evenPositiveLessThan20 = num -> false; // TODO implement combined predicate
+            Predicate<Integer> evenPositiveLessThan20 = NumberPredicates.IS_EVEN
+                    .and(NumberPredicates.IS_POSITIVE)
+                    .and(NumberPredicates.createRangePredicate(0, 19));
 
             List<Integer> expected = List.of(2, 4, 6, 8, 10, 12);
             List<Integer> result = NumberPredicates.filterNumbers(numbers, evenPositiveLessThan20);
