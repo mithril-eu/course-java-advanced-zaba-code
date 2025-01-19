@@ -1,8 +1,10 @@
 package eu.mithril.javafunctional.kata02;
 
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class StudentAnalyzer {
 
@@ -12,28 +14,32 @@ public class StudentAnalyzer {
         this.students = students;
     }
 
-    // TODO: Implement using Stream API to calculate average grade for all students
     public double getAverageGrade() {
-        return 0.0;
+        return students.stream()
+                .mapToDouble(Student::getGrade)
+                .average()
+                .orElse(0.0);
     }
 
-    // TODO: Implement using Stream API to find students with grade above threshold
     public List<Student> getStudentsAboveGrade(double threshold) {
-        return List.of();
+        return students.stream()
+                .filter(student -> student.getGrade() > threshold)
+                .collect(Collectors.toList());
     }
 
-    // TODO: Implement using Stream API to group students by subject
     public Map<String, List<Student>> groupBySubject() {
-        return Map.of();
+        return students.stream()
+                .collect(Collectors.groupingBy(Student::getSubject));
     }
 
-    // TODO: Implement using Stream API to find student with highest grade
     public Student getBestStudent() {
-        return null;
+        return students.stream()
+                .max(Comparator.comparingDouble(Student::getGrade))
+                .orElse(null);
     }
 
-    // TODO: Implement using Stream API to get average grade by subject
     public Map<String, Double> getAverageGradeBySubject() {
-        return Map.of();
+        return students.stream()
+                .collect(Collectors.groupingBy(Student::getSubject, Collectors.averagingDouble(Student::getGrade)));
     }
 }
