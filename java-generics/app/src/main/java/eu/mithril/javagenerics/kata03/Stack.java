@@ -9,7 +9,6 @@ import java.util.Collection;
  * @param <E> the type of elements in the stack
  */
 public class Stack<E> {
-
     private Object[] elements;
     private int size;
     private final int capacity;
@@ -30,7 +29,13 @@ public class Stack<E> {
      * @throws StackException if the stack is full
      */
     public void push(E element) {
-        return; // TODO: Implement this method
+        if (element == null) {
+            throw new IllegalArgumentException("Cannot push null element");
+        }
+        if (isFull()) {
+            throw new StackException("Stack is full");
+        }
+        elements[size++] = element;
     }
 
     /**
@@ -40,7 +45,15 @@ public class Stack<E> {
      * @throws StackException if there isn't enough space
      */
     public void pushAll(Collection<? extends E> elements) {
-        return; // TODO: Implement this method
+        if (elements == null) {
+            throw new IllegalArgumentException("Collection cannot be null");
+        }
+        if (size + elements.size() > capacity) {
+            throw new StackException("Not enough space for all elements");
+        }
+        for (E element : elements) {
+            push(element);
+        }
     }
 
     /**
@@ -51,7 +64,12 @@ public class Stack<E> {
      */
     @SuppressWarnings("unchecked")
     public E pop() {
-        return null; // TODO: Implement this method
+        if (isEmpty()) {
+            throw new StackException();
+        }
+        E element = (E) elements[--size];
+        elements[size] = null;  // Help GC
+        return element;
     }
 
     /**
@@ -61,7 +79,12 @@ public class Stack<E> {
      * @param destination collection to receive the elements
      */
     public void popAll(Collection<? super E> destination) {
-        return; // TODO: Implement this method
+        if (destination == null) {
+            throw new IllegalArgumentException("Destination collection cannot be null");
+        }
+        while (!isEmpty()) {
+            destination.add(pop());
+        }
     }
 
     /**
@@ -72,14 +95,21 @@ public class Stack<E> {
      */
     @SuppressWarnings("unchecked")
     public E peek() {
-        return null; // TODO: Implement this method
+        if (isEmpty()) {
+            throw new StackException();
+        }
+        return (E) elements[size - 1];
     }
 
     /**
      * Removes all elements from the stack.
      */
     public void clear() {
-        return; // TODO: Implement this method
+        // Clear references to help GC
+        for (int i = 0; i < size; i++) {
+            elements[i] = null;
+        }
+        size = 0;
     }
 
     /**

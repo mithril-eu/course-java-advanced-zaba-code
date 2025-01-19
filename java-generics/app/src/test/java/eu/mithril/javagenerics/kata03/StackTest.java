@@ -2,8 +2,6 @@ package eu.mithril.javagenerics.kata03;
 
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.EmptyStackException;
 import java.util.List;
 
 import org.junit.jupiter.api.DisplayName;
@@ -50,7 +48,7 @@ public class StackTest {
     void shouldThrowExceptionOnEmptyPop() {
         Stack<Double> stack = new Stack<>(5);
 
-        assertThrows(EmptyStackException.class, () -> stack.pop());
+        assertThrows(StackException.class, () -> stack.pop());
     }
 
     @Test
@@ -58,7 +56,7 @@ public class StackTest {
     void shouldThrowExceptionOnEmptyPeek() {
         Stack<Character> stack = new Stack<>(5);
 
-        assertThrows(EmptyStackException.class, () -> stack.peek());
+        assertThrows(StackException.class, () -> stack.peek());
     }
 
     @Test
