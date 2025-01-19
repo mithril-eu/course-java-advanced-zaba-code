@@ -29,22 +29,16 @@ public class LambdasDeeperDiveTest {
         final int integer2 = 4;
 
         // TODO:
-        //  Replace the MyBiFuncton class with a BiFunction named add.
+        //  Replace the MyBiFunction class with a BiFunction named add.
         //  Replace the max with a sum() function.
         //  -------------------
         //  Hint: BiFunction<Integer, Integer, Integer> adder = (x, y) -> //do something
         //  Check API: java.util.function.BiFunction
         //  Check API: java.util.function.BiFunction.apply
-        class MyBiFunction {
-            int apply(int x, int y) {
-                return Integer.max(x, y);
-            }
-        }
-        MyBiFunction adder = new MyBiFunction();
+        BiFunction<Integer, Integer, Integer> adder = (x, y) -> Integer.sum(x, y);
         //  -------------------
 
-        assertEquals(7, adder.apply(integer1, integer2),
-                "The function should produce a result of 7");
+        assertEquals(7, adder.apply(integer1, integer2), "The function should produce a result of 7");
     }
 
     @Test
@@ -62,13 +56,12 @@ public class LambdasDeeperDiveTest {
         //  Create an addOne, which passes in a 1 and a int n to the add function and
         //  returns a partial application of 1, n.
         //  HINT: use the add.apply(?, ?)
-        Function<Integer, Integer> addOne = n -> 0;
+        Function<Integer, Integer> addOne = n -> add.apply(1, n);
 
         // TODO:
         //  Replace the 6 with a call to addOne
         //  HINT: use the addOne.apply() to return a value of 7
-        assertEquals(7, addOne.apply(6),
-                "The function should return 7");
+        assertEquals(7, addOne.apply(6), "The function should return 7");
     }
 
     /**
@@ -81,32 +74,17 @@ public class LambdasDeeperDiveTest {
         // TODO:
         //  Replace the below Function to a lambda
         //  Replace the zero with a valid function call
-        Calculator addition = new Calculator() {
-            @Override
-            public int calculate(int x, int y) {
-                return 0;
-            }
-        };
+        Calculator addition = (x, y) -> x + y;
 
         // TODO:
         //  Replace the below Function to a lambda
         //  Replace the zero with a valid function call
-        Calculator subtraction = new Calculator() {
-            @Override
-            public int calculate(int x, int y) {
-                return 0;
-            }
-        };
+        Calculator subtraction = (x, y) -> x - y;
 
         // TODO:
         //  Replace the below Function to a lambda
         //  Replace the zero with a valid function call
-        Calculator multiplication = new Calculator() {
-            @Override
-            public int calculate(int x, int y) {
-                return 0;
-            }
-        };
+        Calculator multiplication = (x, y) -> x * y;
 
         assertEquals(7, addition.calculate(6, 1), "The addition should return a value of 7");
 
@@ -122,18 +100,9 @@ public class LambdasDeeperDiveTest {
         List<Person> persons = List.of(Person.ALICE, Person.BOB, Person.CATHY, Person.EMILY);
         List<Person> expectedList = List.of(Person.EMILY, Person.BOB, Person.ALICE, Person.CATHY);
 
-        // TODO:
-        //  Replace the anonymous class with a lambda.
-        //  Replace the postions of o2 and o1 to pass the test as well
-        Comparator<Person> nameSorter = new Comparator<>() {
-            @Override
-            public int compare(Person o1, Person o2) {
-                return o2.getLastName().compareTo(o1.getLastName());
-            }
-        };
-        List<Person> actualList = new ArrayList<>();
-        actualList.addAll(persons);
-        Collections.sort(actualList, nameSorter);
+        Comparator<Person> nameSorter = Comparator.comparing(Person::getLastName);
+        List<Person> actualList = new ArrayList<>(persons);
+        actualList.sort(nameSorter);
 
         assertEquals(expectedList, actualList, "The sorted lists should match");
     }
