@@ -24,7 +24,14 @@ public class InventoryBox<T> {
      * @throws IllegalArgumentException if the quantity is negative
      */
     public void store(T item, int quantity) {
-        return; // TODO: Implement this method
+        if (isSealed) {
+            throw new IllegalStateException("Cannot store items in a sealed box");
+        }
+        if (quantity < 0) {
+            throw new IllegalArgumentException("Quantity cannot be negative");
+        }
+        this.item = item;
+        this.quantity = quantity;
     }
 
     /**
@@ -33,14 +40,23 @@ public class InventoryBox<T> {
      * @throws IllegalStateException if attempting to remove more items than available
      */
     public void remove(int count) {
-        return; // TODO: Implement this method
+        if (isSealed) {
+            throw new IllegalStateException("Cannot remove items from a sealed box");
+        }
+        if (count > this.quantity) {
+            throw new IllegalStateException("Cannot remove more items than available");
+        }
+        this.quantity -= count;
+        if (this.quantity == 0) {
+            this.item = null;
+        }
     }
 
     /**
      * Seals the box, preventing further modifications.
      */
     public void seal() {
-        return; // TODO: Implement this method
+        this.isSealed = true;
     }
 
     /**
@@ -48,7 +64,11 @@ public class InventoryBox<T> {
      * @throws IllegalStateException if the box is sealed
      */
     public void clear() {
-        return; // TODO: Implement this method
+        if (isSealed) {
+            throw new IllegalStateException("Cannot clear a sealed box");
+        }
+        this.item = null;
+        this.quantity = 0;
     }
 
     /**
@@ -56,7 +76,7 @@ public class InventoryBox<T> {
      * @return The stored item, or null if empty
      */
     public T getItem() {
-        return null; // TODO: Implement this method
+        return this.item;
     }
 
     /**
@@ -64,7 +84,7 @@ public class InventoryBox<T> {
      * @return The quantity of items
      */
     public int getQuantity() {
-        return 0; // TODO: Implement this method
+        return this.quantity;
     }
 
     /**
@@ -72,6 +92,6 @@ public class InventoryBox<T> {
      * @return true if the box is sealed, false otherwise
      */
     public boolean isSealed() {
-        return false; // TODO: Implement this method
+        return this.isSealed;
     }
 }
