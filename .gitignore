@@ -5,7 +5,7 @@
 build
 out
 
-/target/
+target
 .mvn
 mvnw
 mvnw.cmd
