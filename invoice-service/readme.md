@@ -30,3 +30,24 @@ The goal is to build REST service with:
         </dependency>
     </dependencies>
 ```
+
+
+```java
+
+public class ApplicationLauncher {
+
+    public static void main(String[] args) throws LifecycleException {
+
+        Tomcat tomcat = new Tomcat();
+        tomcat.setPort(8080);
+        tomcat.getConnector();
+
+        Context ctx = tomcat.addContext("", null);
+        Wrapper servlet = Tomcat.addServlet(ctx, "myFirstServlet", new MyFirstServlet());
+        servlet.setLoadOnStartup(1);
+        servlet.addMapping("/*");
+
+        tomcat.start();
+    }
+}
+```
