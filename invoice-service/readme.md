@@ -20,3 +20,13 @@ The goal is to build REST service with:
   "pdf_url": "https://invoice-service.com/invoice-john_matrix-1.pdf"
 }
 ```
+
+```xml
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-core</artifactId>
+            <version>11.0.2</version>
+        </dependency>
+    </dependencies>
+```
