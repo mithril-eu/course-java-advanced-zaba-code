@@ -1,0 +1,23 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+
+    <!-- Define a default Colored shape (green circle) -->
+    <bean id="coloredShapeBean" class="eu.mithril.training.spring.framework.ch02.model.ColoredShape"/>
+
+    <!-- INJECT the default bean into the ColoredShapeHolder -->
+    <bean id="coloredShapeHolder" class="eu.mithril.training.spring.framework.ch02.model.ColoredShapeHolder">
+
+        <!-- The bean was created above, so we simply "referred" to it. -->
+        <constructor-arg>
+            <ref bean="coloredShapeBean"/>
+        </constructor-arg>
+        <!-- The above could also be written in a shorter, direct style as-->
+        <!-- <constructor-arg ref="coloredShapeBean"/> -->
+
+        <!-- The quantity is passed in as a value of 1 -->
+        <constructor-arg value="1"/>
+    </bean>
+
+</beans>

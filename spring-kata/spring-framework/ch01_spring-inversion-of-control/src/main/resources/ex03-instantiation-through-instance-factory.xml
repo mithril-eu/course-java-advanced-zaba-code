@@ -1,0 +1,15 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+
+    <!-- the factory bean, which contains a method called createInstance() -->
+    <bean id="instanceFactory" class="eu.mithril.training.spring.framework.ch01.Ex03_InstantiationThroughInstanceFactory">
+        <!-- inject any dependencies required by this locator bean -->
+    </bean>
+
+    <!-- the bean to be created via the factory bean -->
+    <bean id="coloredShapeBean"
+          factory-bean="instanceFactory"
+          factory-method="getInstance"/>
+</beans>

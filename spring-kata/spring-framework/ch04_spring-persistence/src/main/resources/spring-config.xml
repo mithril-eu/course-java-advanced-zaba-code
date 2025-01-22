@@ -1,0 +1,25 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/jdbc
+            http://www.springframework.org/schema/jdbc/spring-jdbc-4.3.xsd
+            http://www.springframework.org/schema/context
+            http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- "hint" at available annotations -->
+    <context:annotation-config/>
+    <context:component-scan base-package="eu.mithril.training.spring.framework.ch04"/>
+
+    <jdbc:embedded-database id="dataSource" type="H2">
+        <jdbc:script location="classpath:db/sql/create-tables.sql" />
+        <jdbc:script location="classpath:db/sql/insert-data.sql" />
+    </jdbc:embedded-database>
+
+    <bean id="coloredShapeDao" class="eu.mithril.training.spring.framework.ch04.dao.ColoredShapeDaoImplEx01" >
+        <constructor-arg ref="dataSource" />
+    </bean>
+
+</beans>

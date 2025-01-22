@@ -1,0 +1,27 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/context
+            http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- "hint" at available annotations -->
+    <context:annotation-config/>
+
+    <!-- Define a "orange oval" shape -->
+    <bean id="orangeOvalBean" class="eu.mithril.training.spring.framework.ch03.model.ColoredShape">
+
+        <property name="color" value="orange"/>
+        <property name="type" value="oval"/>
+    </bean>
+
+    <!-- INJECT the bean into the ColoredShapeHolder -->
+    <bean id="coloredShapeHolder" class="eu.mithril.training.spring.framework.ch03.model.ColoredShapeHolder">
+
+        <property name="coloredShape" ref="orangeOvalBean"/>
+        <property name="quantity" value="2"/>
+
+    </bean>
+
+</beans>

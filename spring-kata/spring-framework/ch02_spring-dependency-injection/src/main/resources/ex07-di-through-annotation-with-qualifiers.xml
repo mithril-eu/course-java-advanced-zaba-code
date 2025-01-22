@@ -1,0 +1,43 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/context
+            http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- "hint" at available annotations -->
+    <context:annotation-config/>
+
+    <!-- Define a "orange oval" shape -->
+    <bean id="orangeOvalBean" class="eu.mithril.training.spring.framework.ch02.model.ColoredShape">
+
+        <!-- Notice the new qualifier -->
+        <qualifier value="aColoredShape"/>
+
+        <!-- It does not matter what we use: properties or constructors, here-->
+        <property name="color" value="orange"/>
+        <property name="type" value="oval"/>
+    </bean>
+
+    <!-- Define a "pink polygon" shape -->
+    <bean id="pinkPolygonBean" class="eu.mithril.training.spring.framework.ch02.model.ColoredShape">
+
+        <!-- Notice the new qualifier -->
+        <qualifier value="thePinkPolygon"/>
+
+        <!-- note the "property" entity, it does not matter what we use: properties or constructors, here-->
+        <property name="color" value="pink"/>
+        <property name="type" value="polygon"/>
+    </bean>
+
+    <!-- INJECT the bean into the ColoredShapeHolder -->
+    <bean id="constructorAnnotatedQualifiedColoredShapeHolder" class="eu.mithril.training.spring.framework.ch02.model.ConstructorAnnotatedQualifiedColoredShapeHolder">
+
+        <!-- Notice the lack of referring to the ColoredShape in this bean -->
+
+        <property name="quantity" value="4"/>
+
+    </bean>
+
+</beans>
