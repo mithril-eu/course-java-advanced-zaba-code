@@ -11,8 +11,9 @@ public class InvoiceServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setContentType("text/html; charset=UTF-8");
-        String html = """
+        if (req.getRequestURI().equals("/")) {
+            resp.setContentType("text/html; charset=UTF-8");
+            String html = """
                 <html>
                 <body>
                 <h1>Hello World</h1>
@@ -20,6 +21,10 @@ public class InvoiceServlet extends HttpServlet {
                 </body>
                 </html>
                 """;
-        resp.getWriter().println(html);
+            resp.getWriter().println(html);
+        } else if (req.getRequestURI().equals("/invoice")) {
+            resp.setContentType("application/json; charset=UTF-8");
+            resp.getWriter().print("[]");
+        }
     }
 }
