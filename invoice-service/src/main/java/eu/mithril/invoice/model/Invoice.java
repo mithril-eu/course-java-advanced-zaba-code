@@ -1,4 +1,4 @@
-package eu.mithril.invoice;
+package eu.mithril.invoice.model;
 
 import java.util.UUID;
 

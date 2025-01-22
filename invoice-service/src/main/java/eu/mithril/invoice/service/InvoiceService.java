@@ -1,7 +1,9 @@
-package eu.mithril.invoice;
+package eu.mithril.invoice.service;
 
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
+
+import eu.mithril.invoice.model.Invoice;
 
 public class InvoiceService {
 

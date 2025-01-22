@@ -1,9 +1,11 @@
-package eu.mithril.invoice;
+package eu.mithril.invoice.web;
 
 import java.io.IOException;
 import java.util.List;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import eu.mithril.invoice.model.Invoice;
+import eu.mithril.invoice.service.InvoiceService;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

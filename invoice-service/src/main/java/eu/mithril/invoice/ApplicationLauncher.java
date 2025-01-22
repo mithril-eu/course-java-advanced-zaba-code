@@ -5,6 +5,8 @@ import org.apache.catalina.LifecycleException;
 import org.apache.catalina.Wrapper;
 import org.apache.catalina.startup.Tomcat;
 
+import eu.mithril.invoice.web.InvoiceServlet;
+
 public class ApplicationLauncher {
 
     public static void main(String[] args) throws LifecycleException {
