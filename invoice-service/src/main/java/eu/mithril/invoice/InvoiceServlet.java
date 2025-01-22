@@ -21,6 +21,5 @@ public class InvoiceServlet extends HttpServlet {
                 </html>
                 """;
         resp.getWriter().println(html);
-
     }
 }

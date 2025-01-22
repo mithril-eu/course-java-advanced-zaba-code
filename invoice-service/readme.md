@@ -51,3 +51,22 @@ public class ApplicationLauncher {
     }
 }
 ```
+
+```xml
+
+
+<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-jar-plugin</artifactId>
+    <version>3.3.0</version>
+    <configuration>
+        <archive>
+            <manifest>
+                <mainClass>eu.mithril.ApplicationLauncher</mainClass>
+            </manifest>
+        </archive>
+    </configuration>
+</plugin>
+
+
+```
