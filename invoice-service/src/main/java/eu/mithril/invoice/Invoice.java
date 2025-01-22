@@ -12,11 +12,11 @@ public class Invoice {
     public Invoice() {
     }
 
-    public Invoice(String userId, Integer amount) {
+    public Invoice(String userId, Integer amount, String pdfUrl) {
         this.id = UUID.randomUUID().toString();
         this.userId = userId;
         this.amount = amount;
-        this.pdfUrl = "https://pdfobject.com/pdf/sample.pdf";
+        this.pdfUrl = pdfUrl;
     }
 
     public String getId() {
