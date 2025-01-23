@@ -34,12 +34,18 @@ public class InvoiceService {
     }
 
     public List<Invoice> findAll() {
-        return null;
+        return jdbcTemplate.query(
+                "select id, user_id, pdf_url, amount from invoices",
+                (rs, rowNum) -> new Invoice(
+                        rs.getObject("id").toString(),
+                        rs.getString("user_id"),
+                        rs.getInt("amount"),
+                        rs.getString("pdf_url")
+                )
+        );
     }
 
     public Invoice create(String userId, Integer amount) {
-
-
         User user = userService.findById(userId);
         if (user == null) {
             throw new IllegalArgumentException("User not found");
@@ -58,7 +64,6 @@ public class InvoiceService {
             ps.setString(3, pdfUrl);
             return ps;
         }, keyHolder);
-
 
         String uuid = !keyHolder.getKeys().isEmpty() ? keyHolder.getKeys().values().iterator().next().toString() : null;
         Invoice invoice = new Invoice(uuid, userId, amount, pdfUrl);
