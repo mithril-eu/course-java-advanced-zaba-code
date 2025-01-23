@@ -192,3 +192,19 @@ public class ApplicationLauncher {
 }
 
 ```
+
+```xml
+
+
+<dependency>
+    <groupId>org.hibernate.validator</groupId>
+    <artifactId>hibernate-validator</artifactId>
+    <version>8.0.0.Final</version>
+</dependency>
+<dependency>
+    <groupId>org.glassfish.expressly</groupId>
+    <artifactId>expressly</artifactId>
+    <version>5.0.0</version>
+</dependency>
+
+```
