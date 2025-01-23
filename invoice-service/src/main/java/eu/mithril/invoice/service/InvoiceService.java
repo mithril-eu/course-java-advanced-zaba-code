@@ -1,10 +1,12 @@
 package eu.mithril.invoice.service;
 
+import java.sql.PreparedStatement;
 import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
 
 import eu.mithril.invoice.model.Invoice;
@@ -16,32 +18,51 @@ public class InvoiceService {
 
     private UserService userService;
     private String pdfUrl;
+    private JdbcTemplate jdbcTemplate;
 
-    public InvoiceService(UserService userService, @Value("${app.url}") String url) {
+    public InvoiceService(
+            UserService userService,
+            JdbcTemplate jdbcTemplate,
+            @Value("${app.url}") String url) {
         this.userService = userService;
+        this.jdbcTemplate = jdbcTemplate;
         this.pdfUrl = url;
     }
-
-    List<Invoice> invoices = new CopyOnWriteArrayList<>();
 
     public UserService getUserService() {
         return userService;
     }
 
     public List<Invoice> findAll() {
-        return invoices;
+        return null;
     }
 
     public Invoice create(String userId, Integer amount) {
+
+
         User user = userService.findById(userId);
         if (user == null) {
             throw new IllegalArgumentException("User not found");
         }
 
-        Invoice invoice = new Invoice(userId, amount, pdfUrl);
-        invoices.add(invoice);
-        return invoice;
+        String insertSql = """
+                INSERT INTO invoices (user_id, amount, pdf_url) 
+                    VALUES (?, ?, ?)
+                """;
 
+        KeyHolder keyHolder = new GeneratedKeyHolder();
+        jdbcTemplate.update(con -> {
+            PreparedStatement ps = con.prepareStatement(insertSql, PreparedStatement.RETURN_GENERATED_KEYS);
+            ps.setString(1, userId);
+            ps.setInt(2, amount);
+            ps.setString(3, pdfUrl);
+            return ps;
+        }, keyHolder);
+
+
+        String uuid = !keyHolder.getKeys().isEmpty() ? keyHolder.getKeys().values().iterator().next().toString() : null;
+        Invoice invoice = new Invoice(uuid, userId, amount, pdfUrl);
+        return invoice;
     }
 
     @PostConstruct
