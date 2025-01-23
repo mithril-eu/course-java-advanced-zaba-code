@@ -5,9 +5,15 @@
 <body>
 
 <h2>Header </h2>
-<p>
-    Naš prvi template
+<p>Naš prvi template
+
+    <span th:text="${username}" th:remove="tag">[Username]</span>,
+    Current date:
+    <span th:text="${#temporals.format(currentDate, 'yyyy-MM-dd HH:mm')}" >[currentDate]</span>
+
 </p>
+
+<div th:if="${username.startsWith('M')}"> Ne smiješ se zvati s M---</div>
 
 </body>
 
