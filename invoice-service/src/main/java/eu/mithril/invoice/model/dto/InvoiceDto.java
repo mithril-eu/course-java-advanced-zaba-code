@@ -2,11 +2,16 @@ package eu.mithril.invoice.model.dto;
 
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 
 public class InvoiceDto {
 
     @JsonProperty("user_id")
     private String userId;
+
+    @Min(15)
+    @Max(100)
     private Integer amount;
 
     public String getUserId() {
