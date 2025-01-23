@@ -2,11 +2,11 @@ package eu.mithril.invoice.service;
 
 import java.util.UUID;
 
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import eu.mithril.invoice.model.User;
 
-@Component
+@Service
 public class UserService {
 
     public User findById(String id) {
