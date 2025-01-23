@@ -145,3 +145,11 @@ public class Invoice {
     <version>6.2.2</version>
 </dependency>
 ```
+
+```xml
+        <dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-webmvc</artifactId>
+    <version>6.2.2</version>
+</dependency>
+```

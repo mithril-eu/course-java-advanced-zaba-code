@@ -28,15 +28,7 @@ public class InvoiceServlet extends HttpServlet {
         this.objectMapper = context.getBean(ObjectMapper.class);
         this.invoiceService = context.getBean(InvoiceService.class);
         this.userService = context.getBean(UserService.class);
-
         System.out.println("InvoiceServlet init");
-        System.out.println(context.getBean(UserService.class));
-        System.out.println(context.getBean(UserService.class));
-        System.out.println(context.getBean(UserService.class));
-
-        System.out.println(context.getBean(InvoiceService.class).getUserService());
-        System.out.println(context.getBean(InvoiceService.class).getUserService());
-        System.out.println(context.getBean(InvoiceService.class).getUserService());
     }
 
     @Override
