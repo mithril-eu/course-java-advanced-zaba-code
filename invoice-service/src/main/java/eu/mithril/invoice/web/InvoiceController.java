@@ -27,11 +27,6 @@ public class InvoiceController {
         this.invoiceService = invoiceService;
     }
 
-    @GetMapping("/")
-    public String home() {
-        return "home";
-    }
-
     @GetMapping("/invoices")
     public List<Invoice> invoices() {
         return invoiceService.findAll();

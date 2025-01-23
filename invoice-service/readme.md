@@ -208,3 +208,12 @@ public class ApplicationLauncher {
 </dependency>
 
 ```
+
+```xml  
+<dependency>
+    <groupId>org.thymeleaf</groupId>
+    <artifactId>thymeleaf-spring6</artifactId>
+    <version>3.1.3.RELEASE</version>
+</dependency>
+
+```
