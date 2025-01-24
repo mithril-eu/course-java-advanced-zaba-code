@@ -1,0 +1,41 @@
+### GET request to example server
+GET http://localhost:8080/invoices
+Accept: application/json
+
+### GET
+GET http://localhost:8080/invoices/user/Mirko
+Accept: application/json
+
+### POST request to example server
+POST http://localhost:8080/invoices
+Accept: application/json
+Content-Type: application/json
+
+{
+  "amount": 75, "user_id": "Mirko"
+}
+
+<> 2025-01-24T101915.200.json
+<> 2025-01-24T101808.200.json
+<> 2025-01-24T101026.200.json
+<> 2025-01-24T100807.500.json
+<> 2025-01-24T095538.500.json
+<> 2025-01-24T095326.500.json
+<> 2025-01-24T094000.200.json
+<> 2025-01-23T233016.200.json
+<> 2025-01-23T151443.200.json
+<> 2025-01-23T144623.200.json
+<> 2025-01-23T115018.400.json
+<> 2025-01-23T112508.400.html
+
+### POST request to example server
+POST http://localhost:8080/invoices
+Accept: application/json
+Content-Type: application/xml
+
+<invoiceDto>
+    <amount>100</amount>
+    <user_id>Slavko</user_id>
+</invoiceDto>
+
+###

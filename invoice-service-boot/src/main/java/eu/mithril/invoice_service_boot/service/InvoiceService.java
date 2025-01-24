@@ -56,5 +56,8 @@ public class InvoiceService {
         return invoiceRepository.save(invoice);
     }
 
+    public Iterable<Invoice> findByUser(String userId) {
+        return invoiceRepository.findByUserId(userId);
+    }
 }
 
