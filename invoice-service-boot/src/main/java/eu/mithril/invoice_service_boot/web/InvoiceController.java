@@ -1,7 +1,5 @@
 package eu.mithril.invoice_service_boot.web;
 
-import java.util.List;
-
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,7 +27,7 @@ public class InvoiceController {
     }
 
     @GetMapping("/invoices")
-    public List<Invoice> invoices() {
+    public Iterable<Invoice> invoices() {
         return invoiceService.findAll();
     }
 

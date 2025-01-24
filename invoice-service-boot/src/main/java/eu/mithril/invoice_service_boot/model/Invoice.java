@@ -2,10 +2,16 @@ package eu.mithril.invoice_service_boot.model;
 
 import java.util.UUID;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Table;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+
+@Table("invoices")
 public class Invoice {
 
+    @Id
     String id;
     @JsonProperty("user_id")
     String userId;
@@ -17,7 +23,6 @@ public class Invoice {
     }
 
     public Invoice(String userId, Integer amount, String pdfUrl) {
-        this.id = UUID.randomUUID().toString();
         this.userId = userId;
         this.amount = amount;
         this.pdfUrl = pdfUrl;
@@ -44,5 +49,9 @@ public class Invoice {
 
     public String getPdfUrl() {
         return pdfUrl;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }
