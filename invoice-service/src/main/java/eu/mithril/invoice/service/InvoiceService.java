@@ -8,6 +8,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.support.TransactionSynchronizationManager;
 
 import eu.mithril.invoice.model.Invoice;
 import eu.mithril.invoice.model.User;
@@ -33,7 +35,9 @@ public class InvoiceService {
         return userService;
     }
 
+    @Transactional
     public List<Invoice> findAll() {
+        System.out.println("transaction open =" + TransactionSynchronizationManager.isActualTransactionActive());
         return jdbcTemplate.query(
                 "select id, user_id, pdf_url, amount from invoices",
                 (rs, rowNum) -> new Invoice(
@@ -45,7 +49,10 @@ public class InvoiceService {
         );
     }
 
+    @Transactional
     public Invoice create(String userId, Integer amount) {
+        System.out.println("transaction open =" + TransactionSynchronizationManager.isActualTransactionActive());
+
         User user = userService.findById(userId);
         if (user == null) {
             throw new IllegalArgumentException("User not found");
