@@ -15,19 +15,16 @@ import jakarta.annotation.PreDestroy;
 public class InvoiceService {
 
     private final UserService userService;
-    private final JdbcTemplate jdbcTemplate;
     private final String pdfUrl;
     private final InvoiceRepository invoiceRepository;
 
 
     public InvoiceService(
             UserService userService,
-            JdbcTemplate jdbcTemplate,
             @Value("${app.url}") String appUrl,
             InvoiceRepository invoiceRepository
     ) {
         this.userService = userService;
-        this.jdbcTemplate = jdbcTemplate;
         this.pdfUrl = appUrl;
         this.invoiceRepository = invoiceRepository;
     }
